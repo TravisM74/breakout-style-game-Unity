@@ -10,11 +10,12 @@ public class MainMenuUIControler : MonoBehaviour
 
 
     public TextMeshProUGUI nameField;
+    public TextMeshProUGUI highScoreText;
     private string Name;
     // Start is called before the first frame update
     void Start()
     {
-         
+        highScoreText.text = GameManager.Instance.GetHighScoreText();
     }
 
     // Update is called once per frame
@@ -24,8 +25,8 @@ public class MainMenuUIControler : MonoBehaviour
     }
 
     public void StartClicked(){
-        GameManager.Instance.LoadSavedData();
-        GameManager.Instance.SetName(nameField.text);
+        //GameManager.Instance.LoadSavedData();
+        GameManager.Instance.SetNewPlayerName(nameField.text);
         SceneManager.LoadScene(1);
     }
 

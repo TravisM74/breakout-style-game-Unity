@@ -26,7 +26,9 @@ public class MainManager : MonoBehaviour
     void Start()
     {
         if (GameManager.Instance != null){
-            HighScoreText.text = "Current Player :" + GameManager.Instance.playerName + "     Highest score to beat: " + GameManager.Instance.highScore.ToString() ;
+            HighScoreText.text = "Current Player :" + GameManager.Instance.newPlayerName + "     Highest score to beat: " + GameManager.Instance.highScore.ToString() + " by " + GameManager.Instance.playerName + "." ;
+        } else {
+            HighScoreText.text = " ";
         }
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
@@ -80,6 +82,8 @@ public class MainManager : MonoBehaviour
         if (GameManager.Instance != null){
             if (m_Points > GameManager.Instance.highScore){
                 GameManager.Instance.setScore(m_Points);
+                GameManager.Instance.SetHighScoreName(GameManager.Instance.newPlayerName);
+                
             }
         }
         GameOverText.SetActive(true);
@@ -87,5 +91,9 @@ public class MainManager : MonoBehaviour
 
     public void BackToMenuClicked(){
         SceneManager.LoadScene(0);
+    }
+
+    private void DebugTest(){
+        //Debug.Log("player "+ GameManager.Instance.newPlayerName + " record holder " + GameManager.Instance.playerName);
     }
 }

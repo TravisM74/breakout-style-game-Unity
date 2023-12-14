@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
 
     public string playerName;
+    public string newPlayerName;
     public int highScore;
     
     public static GameManager Instance;
@@ -18,11 +19,22 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+        LoadSavedData();
 
     }
 
-    public void SetName(string name){
+    public void SetNewPlayerName(string name){
+        newPlayerName = name;
+    }
+    public void SetHighScoreName(string name){
         playerName = name;
+    }
+    public void CurrentPlayerNewHighScore(){
+        playerName = newPlayerName;
+    }
+
+    public string GetHighScoreText(){
+        return "Highest Score " + highScore.ToString() + " By " + playerName + ".";
     }
 
     public void setScore(int score){
